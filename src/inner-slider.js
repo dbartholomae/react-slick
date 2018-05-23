@@ -210,8 +210,10 @@ export class InnerSlider extends React.Component {
     this.setState({
       animating: false
     });
-    clearTimeout(this.animationEndCallback);
-    delete this.animationEndCallback;
+    if (this.props.autoplay) {
+      clearTimeout(this.animationEndCallback);
+      delete this.animationEndCallback;
+    }
   };
   updateState = (spec, setTrackStyle, callback) => {
     let updatedState = initializedState(spec);
